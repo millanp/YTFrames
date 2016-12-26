@@ -33,6 +33,8 @@ var waitTimes = {
 
 }
 
+var SCROLLS = 5;
+
 var urlList = [];
 
 var i = 0;
@@ -48,7 +50,7 @@ function searchName (index) {
 }
 
 function scrollToBottom (index, doClick) {
-    for (var i = 0; i<5; i++) {
+    for (var i = 0; i<SCROLLS; i++) {
         window.scrollTo(0,document.body.scrollHeight);
     }
     if (doClick) {
