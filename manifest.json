@@ -9,7 +9,7 @@
     "default_icon": "icon.png"
   },
   "permissions": [
-	"tabs", "http://www.google.com/*",
+	"tabs", "https://www.google.com/*",
     "activeTab", "downloads",
     "https://ajax.googleapis.com/"
   ],
@@ -17,6 +17,10 @@
 	"scripts": ["jquery-1.11.3.min.js", "background.js"],
 	"persistent": true
   },
+  "content_scripts" : [{
+    "matches" :["https://www.google.com/*"],
+    "js": ["jquery-1.11.3.min.js"]
+  }],
   "web_accessible_resources" : [
     "sounds/*"
   ]
