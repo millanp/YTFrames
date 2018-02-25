@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "Google Images Scraper",
+  "description": "A tool to automatically collect hundreds of raw image urls for a series of search queries",
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_icon": "NScrape.png"
   },
   "permissions": [
 	"tabs", "https://www.google.com/*",
