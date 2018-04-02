@@ -1,7 +1,7 @@
 # YTFrames
 A tool to quickly classify and download frames from a YouTube video.
 
-**Quickstart**
+**Instructions**
   1. Clone this repository to your local computer.
   2. Enable developer mode in Chrome, then load as an unpacked extension.
   3. Go to any YouTube video and make sure that it is paused.
