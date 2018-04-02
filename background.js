@@ -26,7 +26,7 @@ chrome.runtime.onMessage.addListener(
 		} else if (request.action == "download") {
 			chrome.downloads.download({
 				url: request.dataURL,
-				filename: className
+				filename: className + ".png"
 			});
 		}
 	}
