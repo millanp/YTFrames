@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Google Images Scraper",
-  "description": "A tool to automatically collect hundreds of raw image urls for a series of search queries",
+  "name": "YTFrames",
+  "description": "A tool to quickly classify and download video frames from YouTube",
   "version": "1.0",
 
   "browser_action": {
@@ -14,12 +14,12 @@
     "https://ajax.googleapis.com/"
   ],
   "background" : {
-	"scripts": ["jquery-1.11.3.min.js", "background.js"],
-	"persistent": true
+	  "scripts": ["jquery-1.11.3.min.js", "background.js"],
+	  "persistent": true
   },
   "content_scripts" : [{
-    "matches" :["https://www.google.com/*"],
-    "js": ["jquery-1.11.3.min.js"]
+    "matches" :["https://www.youtube.com/*"],
+    "js": ["jquery-1.11.3.min.js", "content.js"]
   }],
   "web_accessible_resources" : [
     "sounds/*"
