@@ -17,6 +17,7 @@ chrome.runtime.onMessage.addListener(
             setFramesPerJump()
             videoElem = document.querySelector('video');
             setClass();
+            prevTime = videoElem.currentTime;
             $(document).keydown(function(e) {
                 if (e.which === 81 && e.ctrlKey) {
                     // Ctrl+q was pressed
@@ -51,7 +52,6 @@ function setFramesPerJump() {
 
 function setClass() {
     var nextClass = prompt("Next class:");
-    prevTime = videoElem.currentTime;
     chrome.runtime.sendMessage({ action: "setClass", class: nextClass });
 }
 
