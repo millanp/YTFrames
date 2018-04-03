@@ -47,12 +47,17 @@ chrome.runtime.onMessage.addListener(
 );
 
 function setFramesPerJump() {
-    framesPerJump = parseInt(prompt("Frames to jump: "));
+    var tmp = parseInt(prompt("Frames to jump: "));
+    if (tmp) {
+        framesPerJump = tmp;
+    }
 }
 
 function setClass() {
     var nextClass = prompt("Next class:");
-    chrome.runtime.sendMessage({ action: "setClass", class: nextClass });
+    if (nextClass) {
+        chrome.runtime.sendMessage({ action: "setClass", class: nextClass });
+    }
 }
 
 function downloadCurrentFrame(video) {
