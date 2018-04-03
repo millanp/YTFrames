@@ -8,6 +8,7 @@ WORKFLOW:
 var videoElem;
 var prevTime;
 var framesPerJump;
+var secondsPerFrame;
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
@@ -21,12 +22,18 @@ chrome.runtime.onMessage.addListener(
                     // Ctrl+q was pressed
                     setClass();
                 } else if (e.which === 190 || e.which === 188) {
-                    // period or comma as pressed
+                    // period or comma was pressed
                     var timeSkip = videoElem.currentTime - prevTime;
+                    secondsPerFrame = Math.abs(timeSkip);
                     videoElem.currentTime = prevTime + timeSkip * framesPerJump;
                     prevTime = videoElem.currentTime;
                 } else if (e.which === 16) {
-                    downloadCurrentFrame(videoElem);
+                    // shift was pressed
+                    if (secondsPerFrame) {
+                        downloadCurrentFrame(videoElem);
+                    } else {
+                        alert("Please press '.' or ',' at least once to establish your current frame number");
+                    }
                 } else if (e.which === 70 && e.ctrlKey && e.altKey) {
                     // Ctrl+alt+f was pressed
                     setFramesPerJump();
@@ -54,5 +61,13 @@ function downloadCurrentFrame(video) {
     canvas.width = video.videoWidth;
     var ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    chrome.runtime.sendMessage({ action: "download", dataURL: canvas.toDataURL() });
+    chrome.runtime.sendMessage({
+        action: "download",
+        dataURL: canvas.toDataURL(),
+        frameNumber: getCurrentFrame()
+    });
+}
+
+function getCurrentFrame() {
+    return Math.ceil(videoElem.currentTime / secondsPerFrame);
 }
