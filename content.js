@@ -6,7 +6,7 @@ WORKFLOW:
 4. Repeat steps 2-3
 */
 var videoElem;
-var prevTime;
+var prevTime = 0;
 var framesPerJump;
 var secondsPerFrame;
 
@@ -18,15 +18,25 @@ chrome.runtime.onMessage.addListener(
             videoElem = document.querySelector('video');
             setClass();
             prevTime = videoElem.currentTime;
+            $('.ytp-progress-bar').click(function() {
+                prevTime = videoElem.currentTime;
+                console.log('reset prevtime');
+            });
             $(document).keydown(function(e) {
                 if (e.which === 81 && e.ctrlKey) {
                     // Ctrl+q was pressed
                     setClass();
                 } else if (e.which === 190 || e.which === 188) {
                     // period or comma was pressed
-                    var timeSkip = videoElem.currentTime - prevTime;
-                    secondsPerFrame = Math.abs(timeSkip);
-                    videoElem.currentTime = prevTime + timeSkip * framesPerJump;
+                    if (!secondsPerFrame) {
+                        var timeSkip = videoElem.currentTime - prevTime;
+                        secondsPerFrame = Math.abs(timeSkip);
+                    }
+                    if (e.which === 190) {
+                        videoElem.currentTime = prevTime + secondsPerFrame * framesPerJump;
+                    } else {
+                        videoElem.currentTime = prevTime - secondsPerFrame * framesPerJump;
+                    }
                     prevTime = videoElem.currentTime;
                 } else if (e.which === 16) {
                     // shift was pressed
