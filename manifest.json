@@ -1,27 +1,27 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
 
-  "name": "YTFrames",
-  "description": "A tool to quickly classify and download video frames from YouTube",
-  "version": "1.0",
+    "name": "YTIntervals",
+    "description": "A tool to quickly classify intervals of videos on YouTube",
+    "version": "1.0",
 
-  "browser_action": {
-    "default_icon": "NScrape.png"
-  },
-  "permissions": [
-	"tabs", "https://www.google.com/*",
-    "activeTab", "downloads",
-    "https://ajax.googleapis.com/"
-  ],
-  "background" : {
-	  "scripts": ["jquery-1.11.3.min.js", "background.js"],
-	  "persistent": true
-  },
-  "content_scripts" : [{
-    "matches" :["https://www.youtube.com/*"],
-    "js": ["jquery-1.11.3.min.js", "content.js"]
-  }],
-  "web_accessible_resources" : [
-    "sounds/*"
-  ]
+    "browser_action": {
+        "default_icon": "NScrape.png"
+    },
+    "permissions": [
+        "tabs", "https://www.google.com/*",
+        "activeTab", "downloads",
+        "https://ajax.googleapis.com/"
+    ],
+    "background": {
+        "scripts": ["jquery-1.11.3.min.js", "background.js"],
+        "persistent": true
+    },
+    "content_scripts": [{
+        "matches": ["https://www.youtube.com/*"],
+        "js": ["jquery-1.11.3.min.js", "content.js", "enableFrameJumping.js", "enableDownloadOnShift.js", "enableClassTracking.js"]
+    }],
+    "web_accessible_resources": [
+        "sounds/*"
+    ]
 }
